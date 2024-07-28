@@ -6,6 +6,8 @@ import {
   Text,
   BackHandler,
   StatusBar,
+  Alert,
+  Dimensions,
 } from 'react-native';
 
 export default function Dashboard({navigation}: {navigation: any}) {
@@ -13,16 +15,26 @@ export default function Dashboard({navigation}: {navigation: any}) {
     navigation.navigate('Menu');
   };
   const handleQuit = () => {
-    BackHandler.exitApp();
+    Alert.alert('Keluar', 'Apakah anda yakin akan keluar dari aplikasi?', [
+      {
+        text: 'Tidak',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      {
+        text: 'Ya',
+        onPress: () => BackHandler.exitApp(),
+      },
+    ]);
   };
   return (
     <>
       <StatusBar hidden={true} />
       <ImageBackground
-        source={require('../assets/main_background.jpeg')}
+        source={require('../assets/img/materi_1.jpg')}
         style={styles.imageContainer}>
         <Pressable style={styles.btnQuit} onPress={handleQuit}>
-          <Text style={styles.btnQuitText}>Quit</Text>
+          <Text style={styles.btnQuitText}>Out</Text>
         </Pressable>
         <Pressable style={styles.btnContainer} onPress={handleStart}>
           <Text style={styles.btnText}>Start</Text>
@@ -40,10 +52,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   btnContainer: {
-    padding: 10,
     width: 100,
-    backgroundColor: '#80AF81',
+    backgroundColor: '#25925b',
     borderRadius: 10,
+    top: Dimensions.get('window').height - 315,
   },
   btnText: {
     textAlign: 'center',
@@ -53,15 +65,16 @@ const styles = StyleSheet.create({
   },
   btnQuit: {
     position: 'absolute',
-    top: 10,
-    left: 10,
-    padding: 10,
-    backgroundColor: '#FF7777',
+    top: 16,
+    left: 12,
+    width: 50,
     borderRadius: 10,
+    backgroundColor: '#a881d0',
   },
   btnQuitText: {
     textAlign: 'center',
     color: 'white',
     fontSize: 20,
+    fontWeight: '900',
   },
 });

@@ -3,10 +3,14 @@ import Orientation from 'react-native-orientation-locker';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Dashboard from './src/screens/Dashboard';
 import {NavigationContainer} from '@react-navigation/native';
-import Materi from './src/screens/Materi';
 import Menu from './src/screens/Menu';
 import SoundPlayer from 'react-native-sound-player';
 import {AppState, AppStateStatus} from 'react-native';
+import Pendahuluan from './src/screens/Pendahuluan';
+import Petunjuk from './src/screens/Petunjuk';
+import Profil from './src/screens/Profil';
+import Capaian from './src/screens/Capaian';
+import MenuMateri from './src/screens/MenuMateri';
 
 const Stack = createNativeStackNavigator();
 
@@ -62,15 +66,43 @@ const App = () => {
           }}
         />
         <Stack.Screen
-          name="Materi"
-          component={Materi}
+          name="Menu"
+          component={Menu}
           options={{
             headerShown: false,
           }}
         />
         <Stack.Screen
-          name="Menu"
-          component={Menu}
+          name="Petunjuk"
+          component={Petunjuk}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Profil"
+          component={Profil}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Capaian"
+          component={Capaian}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="MenuMateri"
+          component={MenuMateri}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Pendahuluan"
+          component={Pendahuluan}
           options={{
             headerShown: false,
           }}
