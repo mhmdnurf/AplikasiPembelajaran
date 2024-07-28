@@ -9,6 +9,7 @@ export default function Pendahuluan({navigation}: {navigation: any}) {
   return (
     <>
       <Video
+        resizeMode="stretch"
         source={background}
         ref={videoRef}
         onEnd={() => navigation.goBack()}

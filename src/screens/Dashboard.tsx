@@ -10,10 +10,13 @@ import {
   Dimensions,
 } from 'react-native';
 
+const {width, height} = Dimensions.get('window');
+
 export default function Dashboard({navigation}: {navigation: any}) {
   const handleStart = () => {
     navigation.navigate('Menu');
   };
+
   const handleQuit = () => {
     Alert.alert('Keluar', 'Apakah anda yakin akan keluar dari aplikasi?', [
       {
@@ -27,17 +30,23 @@ export default function Dashboard({navigation}: {navigation: any}) {
       },
     ]);
   };
+
   return (
     <>
       <StatusBar hidden={true} />
+
       <ImageBackground
-        source={require('../assets/img/materi_1.jpg')}
-        style={styles.imageContainer}>
+        source={require('../assets/img/main_screen/main_1.jpg')}
+        style={styles.imageContainer}
+        imageStyle={{
+          resizeMode: 'stretch',
+        }}
+        resizeMode="cover">
         <Pressable style={styles.btnQuit} onPress={handleQuit}>
-          <Text style={styles.btnQuitText}>Out</Text>
+          <Text style={styles.btnQuitText}>OUT</Text>
         </Pressable>
         <Pressable style={styles.btnContainer} onPress={handleStart}>
-          <Text style={styles.btnText}>Start</Text>
+          <Text style={styles.btnText}>START</Text>
         </Pressable>
       </ImageBackground>
     </>
@@ -46,35 +55,42 @@ export default function Dashboard({navigation}: {navigation: any}) {
 
 const styles = StyleSheet.create({
   imageContainer: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: width,
+    height: height,
   },
   btnContainer: {
-    width: 100,
+    position: 'absolute',
+    width: width * 0.5,
+    height: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    left: width * 0.25,
+    top: height * 0.665,
     backgroundColor: '#25925b',
-    borderRadius: 10,
-    top: Dimensions.get('window').height - 315,
+    // backgroundColor: 'rgba(255, 255, 255, 0.7)',
   },
   btnText: {
-    textAlign: 'center',
     color: 'white',
     fontSize: 20,
     fontWeight: '900',
   },
   btnQuit: {
     position: 'absolute',
-    top: 16,
-    left: 12,
-    width: 50,
-    borderRadius: 10,
+    top: height * 0.02,
+    left: width * 0.02,
+    width: width * 0.2,
+    padding: 10,
+    borderRadius: 25,
     backgroundColor: '#a881d0',
+    // backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    borderColor: '#8767ad',
+    borderWidth: 3,
   },
   btnQuitText: {
     textAlign: 'center',
     color: 'white',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '900',
   },
 });

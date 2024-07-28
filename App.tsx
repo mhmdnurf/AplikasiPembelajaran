@@ -11,6 +11,18 @@ import Petunjuk from './src/screens/Petunjuk';
 import Profil from './src/screens/Profil';
 import Capaian from './src/screens/Capaian';
 import MenuMateri from './src/screens/MenuMateri';
+import Materi from './src/screens/Materi';
+import Latihan from './src/screens/Latihan';
+import SoalSatu from './src/screens/latihan/NomorSatu';
+import SoalDua from './src/screens/latihan/NomorDua';
+import SoalTiga from './src/screens/latihan/NomorTiga';
+import SoalEmpat from './src/screens/latihan/NomorEmpat';
+import SoalLima from './src/screens/latihan/NomorLima';
+import SoalEnam from './src/screens/latihan/NomorEnam';
+import SoalTujuh from './src/screens/latihan/NomorTujuh';
+import SoalDelapan from './src/screens/latihan/NomorDelapan';
+import SoalSembilan from './src/screens/latihan/NomorSembilan';
+import SoalSepuluh from './src/screens/latihan/NomorSepuluh';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +35,7 @@ const App = () => {
     try {
       SoundPlayer.loadAsset(require('./src/assets/bg_music.mp3'));
       SoundPlayer.play();
+      SoundPlayer.setVolume(0.25);
     } catch (error) {
       console.log('Cannot play the sound file', error);
     }
@@ -103,6 +116,88 @@ const App = () => {
         <Stack.Screen
           name="Pendahuluan"
           component={Pendahuluan}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="Materi"
+          component={Materi}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Latihan"
+          component={Latihan}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SoalSatu"
+          component={SoalSatu}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SoalDua"
+          component={SoalDua}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SoalTiga"
+          component={SoalTiga}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SoalEmpat"
+          component={SoalEmpat}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SoalLima"
+          component={SoalLima}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SoalEnam"
+          component={SoalEnam}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SoalTujuh"
+          component={SoalTujuh}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SoalDelapan"
+          component={SoalDelapan}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SoalSembilan"
+          component={SoalSembilan}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="SoalSepuluh"
+          component={SoalSepuluh}
           options={{
             headerShown: false,
           }}
