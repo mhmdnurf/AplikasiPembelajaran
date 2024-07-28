@@ -1,17 +1,17 @@
 import React from 'react';
 import {
-  Dimensions,
   ImageBackground,
   Pressable,
   StyleSheet,
   Text,
   View,
   Alert,
+  useWindowDimensions,
 } from 'react-native';
 
-const {width, height} = Dimensions.get('window');
-
 export default function SoalEmpat({navigation}: {navigation: any}) {
+  const {width} = useWindowDimensions(); // Use useWindowDimensions hook
+
   const handleAnswerPress = (answer: string) => {
     const correctAnswer = 'a';
     if (answer === correctAnswer) {
@@ -46,7 +46,8 @@ export default function SoalEmpat({navigation}: {navigation: any}) {
             Kembali
           </Text>
         </Pressable>
-        <View style={styles.questionContainer}>
+        <View
+          style={[styles.questionContainer, {marginHorizontal: width * 0.1}]}>
           <Text style={styles.questionText}>
             4. Sebuah buku adalah 3 kali harga pensil. Harga 2 buah buku dan 3
             buah pensil Rp.24.000 . buatlah persamaan nya adalah…
@@ -79,15 +80,14 @@ export default function SoalEmpat({navigation}: {navigation: any}) {
 
 const styles = StyleSheet.create({
   imageContainer: {
-    width: width,
-    height: height,
+    width: '100%',
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
   questionContainer: {
     backgroundColor: '#f4e1c1',
     padding: 20,
-    marginHorizontal: width * 0.1,
     borderRadius: 10,
   },
   questionText: {

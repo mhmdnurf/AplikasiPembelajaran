@@ -1,16 +1,16 @@
 import React from 'react';
 import {
-  Dimensions,
   ImageBackground,
   Pressable,
   StyleSheet,
   Text,
   View,
+  useWindowDimensions,
 } from 'react-native';
 
-const {width, height} = Dimensions.get('window');
-
 export default function Latihan({navigation}: {navigation: any}) {
+  const {width, height} = useWindowDimensions(); // Use useWindowDimensions hook
+
   const handlePress = (number: number) => {
     switch (number) {
       case 1:
@@ -73,11 +73,11 @@ export default function Latihan({navigation}: {navigation: any}) {
             Kembali
           </Text>
         </Pressable>
-        <View style={styles.cardsContainer}>
+        <View style={[styles.cardsContainer, {marginTop: height * 0.1}]}>
           {Array.from({length: 10}, (_, index) => (
             <Pressable
               key={index}
-              style={styles.card}
+              style={[styles.card, {margin: width * 0.02}]}
               onPress={() => handlePress(index + 1)}>
               <Text style={styles.cardText}>{index + 1}</Text>
             </Pressable>
@@ -90,8 +90,8 @@ export default function Latihan({navigation}: {navigation: any}) {
 
 const styles = StyleSheet.create({
   imageContainer: {
-    width: width,
-    height: height,
+    width: '100%',
+    height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -100,12 +100,10 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    // marginTop: height * 0.1,
   },
   card: {
     width: 100,
     height: 100,
-    margin: width * 0.02,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(244,225,193, 0.5)',

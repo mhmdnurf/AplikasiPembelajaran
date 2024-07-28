@@ -7,12 +7,12 @@ import {
   BackHandler,
   StatusBar,
   Alert,
-  Dimensions,
+  useWindowDimensions,
 } from 'react-native';
 
-const {width, height} = Dimensions.get('window');
-
 export default function Dashboard({navigation}: {navigation: any}) {
+  const {width, height} = useWindowDimensions();
+
   const handleStart = () => {
     navigation.navigate('Menu');
   };
@@ -34,18 +34,32 @@ export default function Dashboard({navigation}: {navigation: any}) {
   return (
     <>
       <StatusBar hidden={true} />
-
       <ImageBackground
         source={require('../assets/img/main_screen/main_1.jpg')}
         style={styles.imageContainer}
-        imageStyle={{
-          resizeMode: 'stretch',
-        }}
-        resizeMode="cover">
-        <Pressable style={styles.btnQuit} onPress={handleQuit}>
+        resizeMode="stretch">
+        <Pressable
+          style={[
+            styles.btnQuit,
+            {
+              top: height * 0.02,
+              left: width * 0.02,
+              width: width * 0.2,
+            },
+          ]}
+          onPress={handleQuit}>
           <Text style={styles.btnQuitText}>OUT</Text>
         </Pressable>
-        <Pressable style={styles.btnContainer} onPress={handleStart}>
+        <Pressable
+          style={[
+            styles.btnContainer,
+            {
+              width: width * 0.5,
+              left: width * 0.25,
+              top: height * 0.665,
+            },
+          ]}
+          onPress={handleStart}>
           <Text style={styles.btnText}>START</Text>
         </Pressable>
       </ImageBackground>
@@ -55,20 +69,16 @@ export default function Dashboard({navigation}: {navigation: any}) {
 
 const styles = StyleSheet.create({
   imageContainer: {
-    width: width,
-    height: height,
+    width: '100%',
+    height: '100%',
   },
   btnContainer: {
     position: 'absolute',
-    width: width * 0.5,
     height: 60,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
-    left: width * 0.25,
-    top: height * 0.665,
     backgroundColor: '#25925b',
-    // backgroundColor: 'rgba(255, 255, 255, 0.7)',
   },
   btnText: {
     color: 'white',
@@ -77,13 +87,9 @@ const styles = StyleSheet.create({
   },
   btnQuit: {
     position: 'absolute',
-    top: height * 0.02,
-    left: width * 0.02,
-    width: width * 0.2,
     padding: 10,
     borderRadius: 25,
     backgroundColor: '#a881d0',
-    // backgroundColor: 'rgba(255, 255, 255, 0.7)',
     borderColor: '#8767ad',
     borderWidth: 3,
   },

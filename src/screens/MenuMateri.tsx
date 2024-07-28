@@ -1,15 +1,15 @@
 import React from 'react';
-
 import {
-  Dimensions,
   ImageBackground,
   Pressable,
   StyleSheet,
   Text,
+  useWindowDimensions,
 } from 'react-native';
 
-const {width, height} = Dimensions.get('window');
 export default function MenuMateri({navigation}: {navigation: any}) {
+  const {width, height} = useWindowDimensions(); // Use useWindowDimensions hook
+
   return (
     <>
       <ImageBackground
@@ -20,27 +20,47 @@ export default function MenuMateri({navigation}: {navigation: any}) {
         }}
         resizeMode="stretch">
         <Pressable
-          style={styles.backBtnContainer}
+          style={[
+            styles.backBtnContainer,
+            {
+              left: width * 0.1, // Dynamically set left position
+              bottom: height * 0.03, // Dynamically set bottom position
+            },
+          ]}
           onPress={() => navigation.goBack()}>
           <Text>.</Text>
         </Pressable>
         <Pressable
-          style={styles.btnPendahuluan}
+          style={[
+            styles.btnPendahuluan,
+            {
+              top: height * 0.45, // Dynamically set top position
+              left: width * 0.195, // Dynamically set left position
+            },
+          ]}
           onPress={() => navigation.navigate('Pendahuluan')}>
           <Text>.</Text>
         </Pressable>
         <Pressable
-          style={styles.btnMateri}
-          onPress={() => {
-            navigation.navigate('Materi');
-          }}>
+          style={[
+            styles.btnMateri,
+            {
+              top: height * 0.45, // Dynamically set top position
+              left: width * 0.45, // Dynamically set left position
+            },
+          ]}
+          onPress={() => navigation.navigate('Materi')}>
           <Text>.</Text>
         </Pressable>
         <Pressable
-          style={styles.btnLatihan}
-          onPress={() => {
-            navigation.navigate('Latihan');
-          }}>
+          style={[
+            styles.btnLatihan,
+            {
+              top: height * 0.45, // Dynamically set top position
+              left: width * 0.705, // Dynamically set left position
+            },
+          ]}
+          onPress={() => navigation.navigate('Latihan')}>
           <Text>.</Text>
         </Pressable>
       </ImageBackground>
@@ -51,10 +71,7 @@ export default function MenuMateri({navigation}: {navigation: any}) {
 const styles = StyleSheet.create({
   backBtnContainer: {
     position: 'absolute',
-    left: width * 0.0975,
-    bottom: height * 0.03,
     padding: 10,
-    // backgroundColor: '#1e91c7',
     backgroundColor: 'rgba(255, 255, 255, 0.7)',
     width: 50,
     height: 50,
@@ -65,35 +82,29 @@ const styles = StyleSheet.create({
     height: '100%',
     display: 'flex',
   },
-  imgButton: {width: 10, height: 10},
+  imgButton: {
+    width: 10,
+    height: 10,
+  },
   btnPendahuluan: {
     position: 'absolute',
-    top: height * 0.45,
-    left: width * 0.195,
     padding: 10,
     backgroundColor: 'rgba(255, 255, 0, 0.7)',
-    // backgroundColor: '#1e91c7',
     width: 100,
     height: 100,
   },
   btnMateri: {
     position: 'absolute',
-    top: height * 0.45,
-    left: width * 0.45,
     padding: 10,
     width: 100,
     height: 100,
-    // backgroundColor: '#1e91c7',
     backgroundColor: 'rgba(255, 255, 0, 0.7)',
   },
   btnLatihan: {
     position: 'absolute',
-    top: height * 0.45,
-    left: width * 0.705,
     padding: 10,
     width: 115,
     height: 100,
-    // backgroundColor: '#1e91c7',
     backgroundColor: 'rgba(255, 255, 0, 0.7)',
   },
 });

@@ -1,15 +1,15 @@
 import React from 'react';
-
 import {
-  Dimensions,
   ImageBackground,
   Pressable,
   StyleSheet,
   Text,
+  useWindowDimensions,
 } from 'react-native';
 
-const {width, height} = Dimensions.get('window');
 export default function Profil({navigation}: {navigation: any}) {
+  const {width, height} = useWindowDimensions(); // Use useWindowDimensions hook
+
   return (
     <>
       <ImageBackground
@@ -18,11 +18,15 @@ export default function Profil({navigation}: {navigation: any}) {
           width: '100%',
           height: '100%',
         }}
-        imageStyle={{
-          resizeMode: 'stretch',
-        }}>
+        resizeMode="stretch">
         <Pressable
-          style={styles.backBtnContainer}
+          style={[
+            styles.backBtnContainer,
+            {
+              left: width * 0.0975, // Dynamically set left position
+              bottom: height * 0.0575, // Dynamically set bottom position
+            },
+          ]}
           onPress={() => navigation.goBack()}>
           <Text>.</Text>
         </Pressable>
@@ -34,10 +38,7 @@ export default function Profil({navigation}: {navigation: any}) {
 const styles = StyleSheet.create({
   backBtnContainer: {
     position: 'absolute',
-    left: width * 0.0975,
-    bottom: height * 0.0575,
     padding: 10,
-    // backgroundColor: '#1e91c7',
     backgroundColor: 'rgba(255, 255, 255, 0.7)',
     width: 50,
     height: 50,
@@ -48,5 +49,8 @@ const styles = StyleSheet.create({
     height: '100%',
     display: 'flex',
   },
-  imgButton: {width: 10, height: 10},
+  imgButton: {
+    width: 10,
+    height: 10,
+  },
 });

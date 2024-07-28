@@ -1,15 +1,15 @@
 import React from 'react';
 import {
-  Dimensions,
   ImageBackground,
   Pressable,
   StyleSheet,
   Text,
+  useWindowDimensions,
 } from 'react-native';
 
-const {width, height} = Dimensions.get('window');
-
 export default function Menu({navigation}: {navigation: any}) {
+  const {width, height} = useWindowDimensions(); // Use useWindowDimensions hook
+
   return (
     <>
       <ImageBackground
@@ -17,34 +17,68 @@ export default function Menu({navigation}: {navigation: any}) {
         style={styles.imageContainer}
         resizeMode="stretch">
         <Pressable
-          style={styles.backBtnContainer}
+          style={[
+            styles.backBtnContainer,
+            {
+              bottom: height * 0.04, // Dynamically set bottom position
+              left: width * 0.0975, // Dynamically set left position
+            },
+          ]}
           onPress={() => navigation.navigate('Home')}>
           <Text>.</Text>
         </Pressable>
         <Pressable
-          style={styles.btnPetunjuk}
-          onPress={() => {
-            navigation.navigate('Petunjuk');
-          }}>
+          style={[
+            styles.btn,
+            {
+              top: height * 0.5, // Dynamically set top position
+              left: width * 0.09, // Dynamically set left position
+            },
+          ]}
+          onPress={() => navigation.navigate('Petunjuk')}>
           <Text>.</Text>
         </Pressable>
         <Pressable
-          style={styles.btnProfil}
+          style={[
+            styles.btn,
+            {
+              top: height * 0.5, // Dynamically set top position
+              left: width * 0.209, // Dynamically set left position
+            },
+          ]}
           onPress={() => navigation.navigate('Profil')}>
           <Text>.</Text>
         </Pressable>
         <Pressable
-          style={styles.btnCapaian}
+          style={[
+            styles.btn,
+            {
+              top: height * 0.5, // Dynamically set top position
+              left: width * 0.325, // Dynamically set left position
+            },
+          ]}
           onPress={() => navigation.navigate('Capaian')}>
           <Text>.</Text>
         </Pressable>
         <Pressable
-          style={styles.btnMateri}
+          style={[
+            styles.btn,
+            {
+              top: height * 0.5, // Dynamically set top position
+              left: width * 0.445, // Dynamically set left position
+            },
+          ]}
           onPress={() => navigation.navigate('MenuMateri')}>
           <Text>.</Text>
         </Pressable>
         <Pressable
-          style={styles.btnLatihan}
+          style={[
+            styles.btn,
+            {
+              top: height * 0.5, // Dynamically set top position
+              left: width * 0.565, // Dynamically set left position
+            },
+          ]}
           onPress={() => navigation.navigate('Latihan')}>
           <Text>.</Text>
         </Pressable>
@@ -56,8 +90,6 @@ export default function Menu({navigation}: {navigation: any}) {
 const styles = StyleSheet.create({
   backBtnContainer: {
     position: 'absolute',
-    bottom: height * 0.04,
-    left: width * 0.0975,
     width: 50,
     height: 50,
     justifyContent: 'center',
@@ -70,58 +102,11 @@ const styles = StyleSheet.create({
     height: 30,
   },
   imageContainer: {
-    flex: 1,
-    width: width,
-    height: height,
+    width: '100%',
+    height: '100%',
   },
-  btnPetunjuk: {
+  btn: {
     position: 'absolute',
-    top: height * 0.5,
-    left: width * 0.09,
-    width: 100,
-    height: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
-  },
-  btnProfil: {
-    position: 'absolute',
-    top: height * 0.5,
-    left: width * 0.209,
-    width: 100,
-    height: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
-  },
-  btnCapaian: {
-    position: 'absolute',
-    top: height * 0.5,
-    left: width * 0.325,
-    width: 100,
-    height: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
-  },
-  btnMateri: {
-    position: 'absolute',
-    top: height * 0.5,
-    left: width * 0.445,
-    width: 100,
-    height: 100,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 50,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
-  },
-  btnLatihan: {
-    position: 'absolute',
-    top: height * 0.5,
-    left: width * 0.565,
     width: 100,
     height: 100,
     justifyContent: 'center',
