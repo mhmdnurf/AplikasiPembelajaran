@@ -106,12 +106,12 @@ const styles = StyleSheet.create({
     height: 100,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(244,225,193, 0.5)',
+    backgroundColor: 'rgba(244,225,193, 1)',
     borderRadius: 10,
   },
   cardText: {
-    color: 'white',
-    fontSize: 18,
+    color: 'black',
+    fontSize: 36,
     fontWeight: 'bold',
   },
 });

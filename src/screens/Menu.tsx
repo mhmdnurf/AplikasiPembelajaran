@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 25,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    // backgroundColor: 'rgba(255, 255, 255, 0.7)',
   },
   imgButton: {
     width: 30,
@@ -112,6 +112,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 50,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    // backgroundColor: 'rgba(255, 255, 255, 0.7)',
   },
 });

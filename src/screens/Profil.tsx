@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   backBtnContainer: {
     position: 'absolute',
     padding: 10,
-    backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    // backgroundColor: 'rgba(255, 255, 255, 0.7)',
     width: 50,
     height: 50,
     borderRadius: 100,

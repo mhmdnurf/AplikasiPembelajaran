@@ -5,20 +5,24 @@ import {
   StyleSheet,
   Text,
   View,
-  Alert,
   useWindowDimensions,
+  Modal,
 } from 'react-native';
+import FastImage from 'react-native-fast-image';
 
 export default function SoalDelapan({navigation}: {navigation: any}) {
-  const {width} = useWindowDimensions(); // Use useWindowDimensions hook
+  const {width} = useWindowDimensions();
+  const [modalVisible, setModalVisible] = React.useState(false);
+  const [isCorrect, setIsCorrect] = React.useState(false);
 
   const handleAnswerPress = (answer: string) => {
     const correctAnswer = 'c';
     if (answer === correctAnswer) {
-      Alert.alert('Correct', 'Jawaban Anda benar!');
+      setIsCorrect(true);
     } else {
-      Alert.alert('Incorrect', 'Jawaban Anda salah.');
+      setIsCorrect(false);
     }
+    setModalVisible(true);
   };
 
   return (
@@ -28,23 +32,9 @@ export default function SoalDelapan({navigation}: {navigation: any}) {
         style={styles.imageContainer}
         resizeMode="stretch">
         <Pressable
-          style={{
-            position: 'absolute',
-            top: 20,
-            left: 20,
-            padding: 10,
-            backgroundColor: 'rgba(0, 0, 0, 0.5)',
-            borderRadius: 10,
-          }}
+          style={styles.backButton}
           onPress={() => navigation.goBack()}>
-          <Text
-            style={{
-              color: 'white',
-              fontSize: 16,
-              fontWeight: 'bold',
-            }}>
-            Kembali
-          </Text>
+          <Text style={styles.backButtonText}>Kembali</Text>
         </Pressable>
         <View
           style={[styles.questionContainer, {marginHorizontal: width * 0.1}]}>
@@ -73,6 +63,36 @@ export default function SoalDelapan({navigation}: {navigation: any}) {
             <Text style={styles.optionText}>d. Umur azka = 12</Text>
           </Pressable>
         </View>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(!modalVisible);
+          }}>
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContainer}>
+              <FastImage
+                source={
+                  isCorrect
+                    ? require('../../assets/gif/smile.gif')
+                    : require('../../assets/gif/sad.gif')
+                }
+                style={styles.modalImage}
+              />
+              <Text style={styles.modalText}>
+                {isCorrect
+                  ? 'Selamat, jawaban Anda benar!'
+                  : 'Maaf, jawaban Anda salah. Silakan coba lagi.'}
+              </Text>
+              <Pressable
+                style={styles.closeButton}
+                onPress={() => setModalVisible(false)}>
+                <Text style={styles.closeButtonText}>Tutup</Text>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
       </ImageBackground>
     </>
   );
@@ -84,6 +104,19 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  backButton: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    padding: 10,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderRadius: 10,
+  },
+  backButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   questionContainer: {
     backgroundColor: '#f4e1c1',
@@ -104,5 +137,42 @@ const styles = StyleSheet.create({
   optionText: {
     color: 'white',
     fontSize: 16,
+  },
+  modalOverlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
+  modalContainer: {
+    width: 300,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    padding: 20,
+    alignItems: 'center',
+  },
+  modalImage: {
+    width: 100,
+    height: 100,
+    margin: 20,
+    borderRadius: 10,
+  },
+  modalText: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 10,
+  },
+  closeButton: {
+    backgroundColor: '#2196F3',
+    borderRadius: 10,
+    padding: 10,
+    marginTop: 10,
+  },
+  closeButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

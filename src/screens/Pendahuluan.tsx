@@ -1,6 +1,6 @@
 import React from 'react';
 import {useRef} from 'react';
-import {StyleSheet} from 'react-native';
+import {Pressable, StyleSheet, Text} from 'react-native';
 import Video, {VideoRef} from 'react-native-video';
 export default function Pendahuluan({navigation}: {navigation: any}) {
   const videoRef = useRef<VideoRef>(null);
@@ -15,6 +15,28 @@ export default function Pendahuluan({navigation}: {navigation: any}) {
         onEnd={() => navigation.goBack()}
         style={styles.backgroundVideo}
       />
+      <Pressable
+        style={{
+          position: 'absolute',
+          padding: 10,
+          left: 50,
+          top: 10,
+          backgroundColor: 'rgba(255, 255, 255, 1)',
+          borderRadius: 10,
+        }}
+        onPress={() => {
+          videoRef.current?.pause();
+          navigation.goBack();
+        }}>
+        <Text
+          style={{
+            fontSize: 20,
+            color: 'black',
+            fontWeight: 'bold',
+          }}>
+          Skip
+        </Text>
+      </Pressable>
     </>
   );
 }
