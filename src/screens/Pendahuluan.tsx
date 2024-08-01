@@ -18,10 +18,11 @@ export default function Pendahuluan({navigation}: {navigation: any}) {
       <Pressable
         style={{
           position: 'absolute',
-          padding: 10,
+          padding: 15,
+          width: 100,
           left: 50,
-          top: 10,
-          backgroundColor: 'rgba(255, 255, 255, 1)',
+          bottom: 30,
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
           borderRadius: 10,
         }}
         onPress={() => {
@@ -33,6 +34,7 @@ export default function Pendahuluan({navigation}: {navigation: any}) {
             fontSize: 20,
             color: 'black',
             fontWeight: 'bold',
+            textAlign: 'center',
           }}>
           Skip
         </Text>
