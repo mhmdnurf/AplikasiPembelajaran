@@ -87,7 +87,10 @@ export default function SoalDelapan({navigation}: {navigation: any}) {
               </Text>
               <Pressable
                 style={styles.closeButton}
-                onPress={() => setModalVisible(false)}>
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                  navigation.replace('SoalSembilan');
+                }}>
                 <Text style={styles.closeButtonText}>Tutup</Text>
               </Pressable>
             </View>

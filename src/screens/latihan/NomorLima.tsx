@@ -88,7 +88,10 @@ export default function SoalLima({navigation}: {navigation: any}) {
               </Text>
               <Pressable
                 style={styles.closeButton}
-                onPress={() => setModalVisible(false)}>
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                  navigation.replace('SoalEnam');
+                }}>
                 <Text style={styles.closeButtonText}>Tutup</Text>
               </Pressable>
             </View>
