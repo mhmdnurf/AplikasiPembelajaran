@@ -88,7 +88,10 @@ export default function SoalDua({navigation}: {navigation: any}) {
               </Text>
               <Pressable
                 style={styles.closeButton}
-                onPress={() => setModalVisible(false)}>
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                  navigation.replace('SoalTiga');
+                }}>
                 <Text style={styles.closeButtonText}>Tutup</Text>
               </Pressable>
             </View>

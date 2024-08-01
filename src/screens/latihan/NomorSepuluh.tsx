@@ -90,7 +90,10 @@ export default function SoalSepuluh({navigation}: {navigation: any}) {
               </Text>
               <Pressable
                 style={styles.closeButton}
-                onPress={() => setModalVisible(false)}>
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                  navigation.goBack();
+                }}>
                 <Text style={styles.closeButtonText}>Tutup</Text>
               </Pressable>
             </View>

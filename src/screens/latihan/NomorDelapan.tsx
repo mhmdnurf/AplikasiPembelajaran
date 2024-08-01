@@ -40,7 +40,7 @@ export default function SoalDelapan({navigation}: {navigation: any}) {
           style={[styles.questionContainer, {marginHorizontal: width * 0.1}]}>
           <Text style={styles.questionText}>
             8. Umur Ibnu 3 kali umur Azka. Jika umur Ibnu 22 tahun lebih tua
-            dari umur Ibnu, tentukan umur Azka sekarang…
+            dari umur Azka, tentukan umur Azka sekarang…
           </Text>
           <Pressable
             style={styles.optionContainer}
