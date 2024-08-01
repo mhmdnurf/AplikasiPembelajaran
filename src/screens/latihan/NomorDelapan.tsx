@@ -39,28 +39,28 @@ export default function SoalDelapan({navigation}: {navigation: any}) {
         <View
           style={[styles.questionContainer, {marginHorizontal: width * 0.1}]}>
           <Text style={styles.questionText}>
-            8. Umur ibnu 3 kali umur azka. Jika umur ibnu 22 tahun lebih tua
-            dari umur ibnu, tentukan umur azka sekarang…
+            8. Umur Ibnu 3 kali umur Azka. Jika umur Ibnu 22 tahun lebih tua
+            dari umur Ibnu, tentukan umur Azka sekarang…
           </Text>
           <Pressable
             style={styles.optionContainer}
             onPress={() => handleAnswerPress('a')}>
-            <Text style={styles.optionText}>a. Umur azka = 11 </Text>
+            <Text style={styles.optionText}>a. Umur Azka = 11 </Text>
           </Pressable>
           <Pressable
             style={styles.optionContainer}
             onPress={() => handleAnswerPress('b')}>
-            <Text style={styles.optionText}>b. Umur azka = 21 </Text>
+            <Text style={styles.optionText}>b. Umur Azka = 21 </Text>
           </Pressable>
           <Pressable
             style={styles.optionContainer}
             onPress={() => handleAnswerPress('c')}>
-            <Text style={styles.optionText}>c. Umur azka = 22</Text>
+            <Text style={styles.optionText}>c. Umur Azka = 22</Text>
           </Pressable>
           <Pressable
             style={styles.optionContainer}
             onPress={() => handleAnswerPress('d')}>
-            <Text style={styles.optionText}>d. Umur azka = 12</Text>
+            <Text style={styles.optionText}>d. Umur Azka = 12</Text>
           </Pressable>
         </View>
         <Modal

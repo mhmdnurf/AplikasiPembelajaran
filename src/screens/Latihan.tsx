@@ -77,7 +77,10 @@ export default function Latihan({navigation}: {navigation: any}) {
           {Array.from({length: 10}, (_, index) => (
             <Pressable
               key={index}
-              style={[styles.card, {margin: width * 0.02}]}
+              style={[
+                styles.card,
+                {margin: width * 0.02, width: (width * 0.9) / 5 - width * 0.04},
+              ]}
               onPress={() => handlePress(index + 1)}>
               <Text style={styles.cardText}>{index + 1}</Text>
             </Pressable>
@@ -102,7 +105,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   card: {
-    width: 100,
     height: 100,
     justifyContent: 'center',
     alignItems: 'center',

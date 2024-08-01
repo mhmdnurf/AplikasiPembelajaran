@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f4e1c1',
     padding: 20,
     borderRadius: 10,
+    left: 30,
   },
   questionText: {
     fontSize: 18,
