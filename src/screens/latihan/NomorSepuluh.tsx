@@ -10,19 +10,37 @@ import {
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
-export default function SoalSepuluh({navigation}: {navigation: any}) {
+export default function SoalSepuluh({
+  navigation,
+  route,
+}: {
+  navigation: any;
+  route: any;
+}) {
   const {width} = useWindowDimensions();
   const [modalVisible, setModalVisible] = React.useState(false);
+  const [modalTotalNilai, setModalTotalNilai] = React.useState(false);
   const [isCorrect, setIsCorrect] = React.useState(false);
+  const [nilai, setNilai] = React.useState(0);
+  let totalNilai = route.params?.totalNilai;
+
+  if (totalNilai == null) {
+    totalNilai = 0;
+  } else {
+    totalNilai = route.params?.totalNilai;
+  }
 
   const handleAnswerPress = (answer: string) => {
     const correctAnswer = 'b';
     if (answer === correctAnswer) {
       setIsCorrect(true);
+      setNilai(totalNilai + 10);
     } else {
       setIsCorrect(false);
+      setNilai(totalNilai);
     }
     setModalVisible(true);
+    setModalTotalNilai(false);
   };
 
   return (
@@ -91,7 +109,49 @@ export default function SoalSepuluh({navigation}: {navigation: any}) {
               <Pressable
                 style={styles.closeButton}
                 onPress={() => {
-                  setModalVisible(!modalVisible);
+                  setModalVisible(false);
+                  if (totalNilai !== undefined) {
+                    setModalTotalNilai(true);
+                  } else {
+                    navigation.goBack();
+                  }
+                }}>
+                <Text style={styles.closeButtonText}>Tutup</Text>
+              </Pressable>
+            </View>
+          </View>
+        </Modal>
+        <Modal
+          animationType="fade"
+          transparent={true}
+          visible={modalTotalNilai}
+          onRequestClose={() => {
+            setModalTotalNilai(!modalTotalNilai);
+          }}>
+          <View style={styles.modalOverlay}>
+            <View style={styles.modalContainer}>
+              <FastImage
+                source={require('../../assets/gif/celebrate.gif')}
+                style={styles.modalImage}
+              />
+              <Text style={styles.modalText}>Benar: {nilai / 10}</Text>
+              <Text style={styles.modalText}>Salah: {10 - nilai / 10}</Text>
+              <Text style={styles.modalText}>
+                Total Nilai Anda: {nilai} dari 100
+              </Text>
+              {nilai === 100 ? (
+                <Text style={styles.modalText}>
+                  Selamat, Anda mendapat nilai 100!
+                </Text>
+              ) : nilai >= 70 ? (
+                <Text style={styles.modalText}>Bagus, terus tingkatkan!</Text>
+              ) : (
+                <Text style={styles.modalText}>Semangat, belajar lagi ya!</Text>
+              )}
+              <Pressable
+                style={styles.closeButton}
+                onPress={() => {
+                  setModalTotalNilai(false);
                   navigation.goBack();
                 }}>
                 <Text style={styles.closeButtonText}>Tutup</Text>

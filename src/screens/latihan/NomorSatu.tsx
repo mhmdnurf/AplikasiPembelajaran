@@ -14,13 +14,16 @@ export default function SoalSatu({navigation}: {navigation: any}) {
   const {width} = useWindowDimensions(); // Use useWindowDimensions hook
   const [modalVisible, setModalVisible] = React.useState(false);
   const [isCorrect, setIsCorrect] = React.useState(false);
+  const [nilai, setNilai] = React.useState(0);
 
   const handleAnswerPress = (answer: string) => {
     const correctAnswer = 'c';
     if (answer === correctAnswer) {
       setIsCorrect(true);
+      setNilai(10);
     } else {
       setIsCorrect(false);
+      setNilai(0);
     }
     setModalVisible(true);
   };
@@ -91,7 +94,9 @@ export default function SoalSatu({navigation}: {navigation: any}) {
                 style={styles.closeButton}
                 onPress={() => {
                   setModalVisible(!modalVisible);
-                  navigation.replace('SoalDua');
+                  navigation.replace('SoalDua', {
+                    totalNilai: nilai,
+                  });
                 }}>
                 <Text style={styles.closeButtonText}>Tutup</Text>
               </Pressable>
@@ -181,5 +186,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  nilaiText: {
+    color: 'black',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 10,
   },
 });

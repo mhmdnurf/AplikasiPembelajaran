@@ -10,17 +10,33 @@ import {
 } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
-export default function SoalTujuh({navigation}: {navigation: any}) {
+export default function SoalTujuh({
+  navigation,
+  route,
+}: {
+  navigation: any;
+  route: any;
+}) {
   const {width} = useWindowDimensions();
   const [modalVisible, setModalVisible] = React.useState(false);
   const [isCorrect, setIsCorrect] = React.useState(false);
+  const [nilai, setNilai] = React.useState(0);
+  let totalNilai = route.params?.totalNilai;
+
+  if (totalNilai == null) {
+    totalNilai = 0;
+  } else {
+    totalNilai = route.params?.totalNilai;
+  }
 
   const handleAnswerPress = (answer: string) => {
     const correctAnswer = 'c';
     if (answer === correctAnswer) {
       setIsCorrect(true);
+      setNilai(10);
     } else {
       setIsCorrect(false);
+      setNilai(0);
     }
     setModalVisible(true);
   };
@@ -88,7 +104,9 @@ export default function SoalTujuh({navigation}: {navigation: any}) {
                 style={styles.closeButton}
                 onPress={() => {
                   setModalVisible(!modalVisible);
-                  navigation.replace('SoalDelapan');
+                  navigation.replace('SoalDelapan', {
+                    totalNilai: totalNilai + nilai,
+                  });
                 }}>
                 <Text style={styles.closeButtonText}>Tutup</Text>
               </Pressable>
